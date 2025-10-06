@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Deploy Otomatis</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    p {
+      color: #dcdcdc;
+      margin-bottom: 25px;
+    }
+    button {
+      background-color: #00b894;
+      color: white;
+      font-size: 20px;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0, 255, 170, 0.4);
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #019875;
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(0, 255, 170, 0.6);
+    }
+    #status {
+      margin-top: 25px;
+      font-size: 1.1em;
+      color: #ffeaa7;
+    }
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9em;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 Deploy Otomatis ke Netlify</h1>
+  <p>Klik tombol di bawah untuk memperbarui website kamu.</p>
+
+  <button id="deployBtn">Deploy Sekarang</button>
+
+  <p id="status">Status: Menunggu aksi...</p>
+
+  <footer>© 2025 | Eros Automation System</footer>
+
+  <script>
+    const hookURL = "https://api.netlify.com/build_hooks/66fd2e7d1f4a880abcd12345"; 
+    // GANTI dengan URL webhook kamu sendiri dari Netlify
+
+    const deployBtn = document.getElementById("deployBtn");
+    const statusText = document.getElementById("status");
+
+    deployBtn.addEventListener("click", async () => {
+      statusText.textContent = "🚀 Mengirim permintaan deploy...";
+      deployBtn.disabled = true;
+      deployBtn.style.opacity = 0.6;
+
+      try {
+        const res = await fetch(hookURL, { method: "POST" });
+        if (res.ok) {
+          statusText.textContent = "✅ Deploy berhasil dimulai! Tunggu beberapa detik...";
+        } else {
+          statusText.textContent = "❌ Gagal memicu deploy (cek webhook URL).";
+        }
+      } catch (err) {
+        statusText.textContent = "⚠️ Terjadi kesalahan koneksi ke server Netlify!";
+      }
+
+      setTimeout(() => {
+        deployBtn.disabled = false;
+        deployBtn.style.opacity = 1;
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
