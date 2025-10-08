@@ -6,9 +6,12 @@
   <title>Form Pendaftaran Siswa</title>
 </head>
 <body>
-  <form name="pendaftaran" method="POST" data-netlify="true" action="/terimakasih.html">
+  <form name="pendaftaran" method="POST" netlify-honeypot="bot-field" data-netlify="true" action="/terimakasih.html">
   <input type="hidden" name="form-name" value="pendaftaran">
   <!-- field lainnya -->
+    <p hidden>
+    <label>Jangan diisi: <input name="bot-field"></label>
+  </p>
       <p>
     <label>Nama: <input type="text" name="nama" required /></label>
   </p>
@@ -19,6 +22,8 @@
     <label>Asal Sekolah: <input type="text" name="asal_sekolah" /></label>
   </p>
   <button type="submit">Kirim</button>
+    <div data-netlify-recaptcha="true"></div>
+
 </form>
 
   <!-- <form name="pendaftaran" method="POST" data-netlify="true">
