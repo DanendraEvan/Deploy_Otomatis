@@ -6,34 +6,41 @@
   <title>Form Pendaftaran Siswa</title>
 </head>
 <body>
-  <form name="pendaftaran" method="POST" netlify-honeypot="bot-field" data-netlify="true" action="/terimakasih.html">
-  <input type="hidden" name="form-name" value="pendaftaran">
-  <!-- field lainnya -->
+  <h1>Form Pendaftaran Siswa</h1>
+
+  <form 
+    name="pendaftaran" 
+    method="POST" 
+    data-netlify="true" 
+    netlify-honeypot="bot-field"
+    action="/terimakasih.html"
+  >
+    <!-- HARUS ADA: Hidden input untuk identifikasi form -->
+    <input type="hidden" name="form-name" value="pendaftaran">
+
+    <!-- HONEYPOT: field tersembunyi anti-bot -->
     <p hidden>
-    <label>Jangan diisi: <input name="bot-field"></label>
-  </p>
-      <p>
-    <label>Nama: <input type="text" name="nama" required /></label>
-  </p>
-  <p>
-    <label>Email: <input type="email" name="email" required /></label>
-  </p>
-  <p>
-    <label>Asal Sekolah: <input type="text" name="asal_sekolah" /></label>
-  </p>
-  <button type="submit">Kirim</button>
+      <label>Jangan diisi: <input name="bot-field"></label>
+    </p>
+
+    <!-- FORM FIELDS -->
+    <p>
+      <label>Nama: <input type="text" name="nama" required /></label>
+    </p>
+    <p>
+      <label>Email: <input type="email" name="email" required /></label>
+    </p>
+    <p>
+      <label>Asal Sekolah: <input type="text" name="asal_sekolah" /></label>
+    </p>
+
+    <!-- reCAPTCHA -->
     <div data-netlify-recaptcha="true"></div>
 
-</form>
-
-  <!-- <form name="pendaftaran" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="pendaftaran">
-
-  <p>
-    <button type="submit">Kirim</button>
-  </p>
-</form> -->
-
+    <p>
+      <button type="submit">Kirim</button>
+    </p>
+  </form>
 
 </body>
 </html>
